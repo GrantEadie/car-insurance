@@ -1,10 +1,20 @@
 $(document).ready(function() {
-  $("#nameOne").submit(function(event) {
-    const person1Input = $("input#person1").val();
+  $("form#insurance").submit(function(event) {
+    const age = parseInt($("input#age").val());
+    const gender = $("select#gender").val();
 
-    $(".person1").append(person1Input);
+    if (age) {
+      let quote = (100 - age) * 3;
+      if (gender === 'male' && age < 26) {
+        quote += 50;
+      }
 
-    $("#signature").show();
+      $("#rate").text(quote);
+      $("#quote").show();
+      
+    } else {
+      alert('Please enter your age.');
+    }
 
     event.preventDefault();
   });
